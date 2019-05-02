@@ -19,31 +19,61 @@ html {
 }
 
 .resizable .resizer{
-  width: 10px;
-  height: 10px;
-  border-radius: 50%; /*magic to turn square into circle*/
   background: white;
   border: 3px solid #4286f4;
   position: absolute;
 }
 
 .resizable .resizer.top-left {
-  left: -5px;
-  top: -5px;
+  left: 0;
+  top: 0;
   cursor: nwse-resize; /*resizer cursor*/
 }
 .resizable .resizer.top-right {
-  right: -5px;
-  top: -5px;
+  right: 0;
+  top: 0;
   cursor: nesw-resize;
 }
 .resizable .resizer.bottom-left {
-  left: -5px;
-  bottom: -5px;
+  left: 0;
+  bottom: 0;
   cursor: nesw-resize;
 }
 .resizable .resizer.bottom-right {
-  right: -5px;
-  bottom: -5px;
+  right: 0;
+  bottom: 0;
   cursor: nwse-resize;
+}
+
+#top {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: ns-resize;
+}
+#right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 5px;
+  box-sizing: border-box;
+  cursor: ew-resize;
+}
+#bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: ns-resize;
+}
+#left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  box-sizing: border-box;
+  cursor: ew-resize;
 }
