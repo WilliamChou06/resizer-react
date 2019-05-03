@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import './Resize.css';
+import {
+  TopHandle,
+  TopLeftHandle,
+  TopRightHandle,
+  RightHandle,
+  BottomRightHandle,
+  BottomHandle,
+  BottomLeftHandle,
+  LeftHandle
+} from '../styles/Handles';
+import { ResizableDiv } from '../styles/ResizableDiv';
 
 class Resizable extends Component {
   state = {
@@ -14,13 +24,19 @@ class Resizable extends Component {
     originalBounding: 0
   };
 
+  // Use events on windows so it doesn't stop working when dragged outside the div
+
   componentDidMount() {
     window.addEventListener('mouseup', this.handleMouseUp);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('mouseup', this.handleMouseUp);
+  }
+
   handleMouseDown = e => {
-    console.log(e.target.id);
-    console.log(e.pageX);
+    // Setting starting values to calculate next values.
+
     this.setState({
       mouseX: e.pageX,
       mouseY: e.pageY,
@@ -28,6 +44,9 @@ class Resizable extends Component {
       originalWidth: this.state.width,
       originalBounding: this.state.bounding
     });
+
+    // Set state to which handle is being dragged
+
     switch (e.target.id) {
       case 'top-left':
         this.setState({ resizing: 'top-left' });
@@ -66,7 +85,7 @@ class Resizable extends Component {
     let originalHeight = this.state.originalHeight;
     let bounding = this.state.bounding;
 
-    console.log(e.pageX, originalMouseX);
+    // Check for handle being dragged and calculate width and height accordingly
 
     if (this.state.resizing === 'bottom-right') {
       this.setState({
@@ -106,18 +125,18 @@ class Resizable extends Component {
     }
     if (this.state.resizing === 'right') {
       this.setState({
-        width: originalWidth + (e.pageX - originalMouseX),
+        width: originalWidth + (e.pageX - originalMouseX)
       });
     }
     if (this.state.resizing === 'bottom') {
       this.setState({
-        height: originalHeight + (e.pageY - originalMouseY),
+        height: originalHeight + (e.pageY - originalMouseY)
       });
     }
     if (this.state.resizing === 'left') {
       this.setState({
         width: originalWidth - (e.pageX - originalMouseX),
-        left: bounding.left + (e.pageX - bounding.left),
+        left: bounding.left + (e.pageX - bounding.left)
       });
     }
   };
@@ -127,7 +146,9 @@ class Resizable extends Component {
     window.removeEventListener('mousemove', this.handleMouseMove);
   };
 
-  refCallback = el => {
+  getBoundingClientRect = el => {
+    // getBoundingClientRect using refs
+
     if (el) {
       this.setState({ bounding: el.getBoundingClientRect() });
     }
@@ -135,31 +156,30 @@ class Resizable extends Component {
 
   render() {
     return (
-      <div
+      <ResizableDiv
         onMouseDown={this.handleMouseDown}
-        style={{
-          width: this.state.width,
-          height: this.state.height,
-          left: this.state.left,
-          top: this.state.top
-        }}
-        className="resizable"
-        ref={this.refCallback}
+        ref={this.getBoundingClientRect}
+        width={this.state.width + 'px'}
+        height={this.state.height + 'px'}
+        top={this.state.top + 'px'}
+        left={this.state.left + 'px'}
       >
         <div className="resizers">
-          <div id="top" className="resizer" />
-          <div id="right" className="resizer" />
-          <div id="bottom" className="resizer" />
-          <div id="left" className="resizer" />
-          <div id="top-left" className="resizer top-left" />
-          <div id="top-right" className="resizer top-right" />
-          <div id="bottom-left" className="resizer bottom-left" />
-          <div id="bottom-right" className="resizer bottom-right" />
+          <TopHandle id="top" />
+          <RightHandle id="right" />
+          <BottomHandle id="bottom" />
+          <LeftHandle id="left" />
+          <TopLeftHandle id="top-left" />
+          <TopRightHandle id="top-right" />
+          <BottomLeftHandle id="bottom-left" />
+          <BottomRightHandle id="bottom-right" />
+          {/* Logging */}
           {this.props.children}
           {this.state.width}
+          {this.state.height}
           {this.state.bounding.left}
         </div>
-      </div>
+      </ResizableDiv>
     );
   }
 }
