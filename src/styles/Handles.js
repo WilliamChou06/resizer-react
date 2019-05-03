@@ -6,6 +6,10 @@ const resizer = css`
   position: absolute;
 `;
 
+const smWidth = css`
+  width: 5px
+`
+
 export const TopHandle = styled.div`
   ${resizer}
   top: 0;
@@ -17,6 +21,7 @@ export const TopHandle = styled.div`
 `;
 export const RightHandle = styled.div`
   ${resizer}
+  ${smWidth}
   top: 0;
   right: 0;
   bottom: 0;
@@ -35,39 +40,38 @@ export const BottomHandle = styled.div`
 `;
 export const LeftHandle = styled.div`
   ${resizer}
+  ${smWidth}
   top: 0;
   left: 0;
   bottom: 0;
-  width: 5px;
   box-sizing: border-box;
   cursor: ew-resize;
 `;
 export const TopLeftHandle = styled.div`
   ${resizer}
+  ${smWidth}
   left: 0;
   top: 0;
-  width: 5px;
   cursor: nwse-resize;
 `;
 export const TopRightHandle = styled.div`
   ${resizer}
+  ${smWidth}
   right: 0;
   top: 0;
-  width: 5px;
-
   cursor: nesw-resize;
 `;
 export const BottomLeftHandle = styled.div`
   ${resizer}
+  ${smWidth}
   left: 0;
   bottom: 0;
-  width: 5px;
   cursor: nesw-resize;
 `;
 export const BottomRightHandle = styled.div`
   ${resizer}
+  ${smWidth}
   right: 0;
   bottom: 0;
-  width: 5px;
   cursor: nwse-resize;
 `;
