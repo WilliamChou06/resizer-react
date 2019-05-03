@@ -16,3 +16,7 @@ export const ResizableDiv = styled.div`
   -webkit-user-select: none;
   -o-user-select: none;
 `;
+
+export const ResizableContent = styled.div`
+  word-wrap: break-word;
+`;

@@ -9,7 +9,7 @@ import {
   BottomLeftHandle,
   LeftHandle
 } from '../styles/Handles';
-import { ResizableDiv } from '../styles/ResizableDiv';
+import { ResizableDiv, ResizableContent } from '../styles/Resizable';
 
 class Resizable extends Component {
   state = {
@@ -164,7 +164,7 @@ class Resizable extends Component {
         top={this.state.top + 'px'}
         left={this.state.left + 'px'}
       >
-        <div className="resizers">
+        <div>
           <TopHandle id="top" />
           <RightHandle id="right" />
           <BottomHandle id="bottom" />
@@ -174,7 +174,7 @@ class Resizable extends Component {
           <BottomLeftHandle id="bottom-left" />
           <BottomRightHandle id="bottom-right" />
           {/* Logging */}
-          {this.props.children}
+          <ResizableContent>{this.props.children}</ResizableContent>
           {this.state.width}
           {this.state.height}
           {this.state.bounding.left}
