@@ -24,7 +24,7 @@ class Resizable extends Component {
     originalBounding: 0
   };
 
-  // Use events on windows so it doesn't stop working when dragged outside the div
+  // Use events on windows so it doesn't stop working when dragged outside the resizable component
 
   componentDidMount() {
     window.addEventListener('mouseup', this.handleMouseUp);
@@ -75,6 +75,8 @@ class Resizable extends Component {
       default:
         break;
     }
+
+    // Event listener to window so it doesn't stop resizing if dragged outside of resizable component
     window.addEventListener('mousemove', this.handleMouseMove);
   };
 
