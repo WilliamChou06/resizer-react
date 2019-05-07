@@ -1,15 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../components/App';
-import Resize from '../components/Resize';
+import Resizable from '../components/Resizable';
 
-it('renders Resize component', () => {
+it('renders Resizable component', () => {
   const wrapper = shallow(<App />);
   expect(
     wrapper.contains(
-      <Resize>
-        <p>asdasdasd</p>
-      </Resize>
+      <Resizable>
+      <p>asdasdaasdasdsd</p>
+    </Resizable>
     )
   ).toBe(true);
 });

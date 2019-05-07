@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Resize from '../components/Resize';
+import Resizable from '../components/Resizable';
 import { TopHandle } from '../styles/Handles';
 import { ResizableDiv } from '../styles/Resizable';
 
@@ -8,10 +8,10 @@ let wrapper, handleMouseDown;
 
 beforeEach(() => {
   handleMouseDown = jest.fn();
-  wrapper = shallow(<Resize />);
+  wrapper = shallow(<Resizable />);
 });
 
-it('renders Resize component', () => {
+it('renders Resizable component', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
