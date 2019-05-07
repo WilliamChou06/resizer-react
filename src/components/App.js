@@ -1,9 +1,11 @@
 import React from 'react';
-import Resize from './Resize';
+import Resizable from './Resizable';
 
-function App() {
+const App = () => {
   return (
-    <Resize><p>asdasdasd</p></Resize>
+    <Resizable>
+      <p>asdasdaasdasdsd</p>
+    </Resizable>
   );
 }
 

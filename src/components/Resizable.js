@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
-import {
-  TopHandle,
-  TopLeftHandle,
-  TopRightHandle,
-  RightHandle,
-  BottomRightHandle,
-  BottomHandle,
-  BottomLeftHandle,
-  LeftHandle
-} from '../styles/Handles';
-import { ResizableDiv, ResizableContent } from '../styles/Resizable';
-
+import { StyledResizableDiv } from '../styles/Resizable';
+import ResizingHandles from './ResizingHandles';
 class Resizable extends Component {
   state = {
     width: this.props.width || 120,
@@ -19,8 +9,8 @@ class Resizable extends Component {
     bounding: 0,
     mouseX: 0,
     mouseY: 0,
-    originalWidth: 120,
-    originalHeight: 120,
+    originalWidth: this.props.width || 120,
+    originalHeight: this.props.height || 120,
     originalBounding: 0
   };
 
@@ -36,7 +26,6 @@ class Resizable extends Component {
 
   handleMouseDown = e => {
     // Setting starting values to calculate next values.
-
     this.setState({
       mouseX: e.pageX,
       mouseY: e.pageY,
@@ -158,7 +147,7 @@ class Resizable extends Component {
 
   render() {
     return (
-      <ResizableDiv
+      <StyledResizableDiv
         onMouseDown={this.handleMouseDown}
         ref={this.getBoundingClientRect}
         width={this.state.width + 'px'}
@@ -166,22 +155,8 @@ class Resizable extends Component {
         top={this.state.top + 'px'}
         left={this.state.left + 'px'}
       >
-        <div>
-          <TopHandle id="top" />
-          <RightHandle id="right" />
-          <BottomHandle id="bottom" />
-          <LeftHandle id="left" />
-          <TopLeftHandle id="top-left" />
-          <TopRightHandle id="top-right" />
-          <BottomLeftHandle id="bottom-left" />
-          <BottomRightHandle id="bottom-right" />
-          {/* Logging */}
-          <ResizableContent>{this.props.children}</ResizableContent>
-          {this.state.width}
-          {this.state.height}
-          {this.state.bounding.left}
-        </div>
-      </ResizableDiv>
+        <ResizingHandles>{this.props.children}</ResizingHandles>
+      </StyledResizableDiv>
     );
   }
 }

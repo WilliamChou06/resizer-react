@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ResizableDiv = styled.div`
+export const StyledResizableDiv = styled.div`
   width: ${props => props.width || 120} !important;
   height: ${props => props.height || 120} !important;
   left: ${props => props.left || 0} !important;
