@@ -5,7 +5,7 @@ class Resizable extends Component {
   state = {
     width: this.props.width || 120,
     height: this.props.height || 120,
-    resizing: true,
+    resizing: false,
     bounding: 0,
     mouseX: 0,
     mouseY: 0,
@@ -15,7 +15,6 @@ class Resizable extends Component {
   };
 
   // Use events on windows so it doesn't stop working when dragged outside the resizable component
-
   componentDidMount() {
     window.addEventListener('mouseup', this.handleMouseUp);
   }
@@ -62,6 +61,7 @@ class Resizable extends Component {
         this.setState({ resizing: 'left' });
         break;
       default:
+        this.setState({ resizing: false });
         break;
     }
 
@@ -77,7 +77,6 @@ class Resizable extends Component {
     let bounding = this.state.bounding;
 
     // Check for handle being dragged and calculate width and height accordingly
-
     if (this.state.resizing === 'bottom-right') {
       this.setState({
         width: originalWidth + (e.pageX - originalMouseX),

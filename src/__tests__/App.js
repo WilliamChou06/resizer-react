@@ -3,6 +3,11 @@ import { shallow } from 'enzyme';
 import App from '../components/App';
 import Resizable from '../components/Resizable';
 
+it('renders App component', () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper).toMatchSnapshot();
+});
+
 it('renders Resizable component', () => {
   const wrapper = shallow(<App />);
   expect(
