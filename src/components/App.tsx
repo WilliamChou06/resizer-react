@@ -5,6 +5,7 @@ const App = () => {
   return (
     <Resizable>
       <p>asdasdaasdasdsd</p>
+      <div style={{width: 400, background: 'blue', height: 200}}></div>
     </Resizable>
   );
 }

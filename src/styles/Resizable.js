@@ -11,6 +11,7 @@ export const StyledResizableDiv = styled.div`
   top: 100px;
   left: 100px;
   user-select: none;
+  overflow: hidden;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;

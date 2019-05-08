@@ -1,17 +1,56 @@
 import React, { Component } from 'react';
 import { StyledResizableDiv } from '../styles/Resizable';
 import ResizingHandles from './ResizingHandles';
-class Resizable extends Component {
+
+export interface Props {
+  width?: number,
+  height?: number
+}
+
+interface Bounding {
+  top: number,
+  bottom: number,
+  left: number,
+  right: number
+}
+
+interface Element {
+  getBoundingClientRect(): any
+}
+
+interface State {
+  width: number,
+  height: number,
+  resizing: any,
+  bounding: Bounding,
+  mouseX: number,
+  mouseY: number,
+  originalWidth: number,
+  originalHeight: number,
+  originalBounding: Bounding,
+  top: number,
+  left: number
+}
+
+class Resizable extends Component<Props, State> {
+
+  public static defaultProps: Partial<Props> = {
+    width: 120,
+    height: 120
+  }
+
   state = {
-    width: this.props.width || 120,
-    height: this.props.height || 120,
-    resizing: false,
-    bounding: 0,
+    width: this.props.width,
+    height: this.props.height,
+    resizing: null,
+    bounding: null,
     mouseX: 0,
     mouseY: 0,
     originalWidth: this.props.width || 120,
     originalHeight: this.props.height || 120,
-    originalBounding: 0
+    originalBounding: null,
+    top: null,
+    left: null
   };
 
   // Use events on windows so it doesn't stop working when dragged outside the resizable component
@@ -23,7 +62,7 @@ class Resizable extends Component {
     window.removeEventListener('mouseup', this.handleMouseUp);
   }
 
-  handleMouseDown = e => {
+  handleMouseDown = (e: any): void => {
     // Setting starting values to calculate next values.
     this.setState({
       mouseX: e.pageX,
@@ -69,7 +108,7 @@ class Resizable extends Component {
     window.addEventListener('mousemove', this.handleMouseMove);
   };
 
-  handleMouseMove = e => {
+  handleMouseMove = (e: MouseEvent): void => {
     let originalMouseX = this.state.mouseX;
     let originalMouseY = this.state.mouseY;
     let originalWidth = this.state.originalWidth;
@@ -131,12 +170,12 @@ class Resizable extends Component {
     }
   };
 
-  handleMouseUp = () => {
+  handleMouseUp = (): void => {
     this.setState({ resizing: false });
     window.removeEventListener('mousemove', this.handleMouseMove);
   };
 
-  getBoundingClientRect = el => {
+  getBoundingClientRect = (el: Element): void => {
     // getBoundingClientRect using refs
 
     if (el) {
