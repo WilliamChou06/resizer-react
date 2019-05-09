@@ -24,7 +24,7 @@
     "noFallthroughCasesInSwitch": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "noImplicitThis": true,
+    "noImplicitThis": true
   },
   "include": [
     "src"

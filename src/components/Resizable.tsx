@@ -21,7 +21,6 @@ interface State {
 }
 
 class Resizable extends Component<Props, State> {
-
   state = {
     width: this.props.width || null,
     height: this.props.height || null,
@@ -99,57 +98,60 @@ class Resizable extends Component<Props, State> {
     let bounding = this.state.bounding;
 
     // Check for handle being dragged and calculate width and height accordingly
-    if (this.state.resizing === 'bottom-right') {
-      this.setState({
-        width: originalWidth + (e.pageX - originalMouseX),
-        height: e.pageY - bounding.top
-      });
-    }
-    if (this.state.resizing === 'bottom-left') {
-      this.setState({
-        width: originalWidth - (e.pageX - originalMouseX),
-        height: originalHeight + (e.pageY - originalMouseY),
-        left: bounding.left + (e.pageX - bounding.left)
-      });
-    }
 
-    if (this.state.resizing === 'top-right') {
-      this.setState({
-        width: originalWidth + (e.pageX - originalMouseX),
-        height: originalHeight - (e.pageY - originalMouseY),
-        top: bounding.top + (e.pageY - bounding.top)
-      });
-    }
-
-    if (this.state.resizing === 'top-left') {
-      this.setState({
-        width: originalWidth - (e.pageX - originalMouseX),
-        height: originalHeight - (e.pageY - originalMouseY),
-        left: bounding.left + (e.pageX - bounding.left),
-        top: bounding.top + (e.pageY - bounding.top)
-      });
-    }
-    if (this.state.resizing === 'top') {
-      this.setState({
-        height: originalHeight - (e.pageY - originalMouseY),
-        top: bounding.top + (e.pageY - bounding.top)
-      });
-    }
-    if (this.state.resizing === 'right') {
-      this.setState({
-        width: originalWidth + (e.pageX - originalMouseX)
-      });
-    }
-    if (this.state.resizing === 'bottom') {
-      this.setState({
-        height: originalHeight + (e.pageY - originalMouseY)
-      });
-    }
-    if (this.state.resizing === 'left') {
-      this.setState({
-        width: originalWidth - (e.pageX - originalMouseX),
-        left: bounding.left + (e.pageX - bounding.left)
-      });
+    switch (this.state.resizing) {
+      case 'top-left':
+        this.setState({
+          width: originalWidth - (e.pageX - originalMouseX),
+          height: originalHeight - (e.pageY - originalMouseY),
+          left: bounding.left + (e.pageX - bounding.left),
+          top: bounding.top + (e.pageY - bounding.top)
+        });
+        break;
+      case 'top':
+        this.setState({
+          height: originalHeight - (e.pageY - originalMouseY),
+          top: bounding.top + (e.pageY - bounding.top)
+        });
+        break;
+      case 'top-right':
+        this.setState({
+          width: originalWidth + (e.pageX - originalMouseX),
+          height: originalHeight - (e.pageY - originalMouseY),
+          top: bounding.top + (e.pageY - bounding.top)
+        });
+        break;
+      case 'right':
+        this.setState({
+          width: originalWidth + (e.pageX - originalMouseX)
+        });
+        break;
+      case 'bottom-left':
+        this.setState({
+          width: originalWidth - (e.pageX - originalMouseX),
+          height: originalHeight + (e.pageY - originalMouseY),
+          left: bounding.left + (e.pageX - bounding.left)
+        });
+        break;
+      case 'bottom':
+        this.setState({
+          height: originalHeight + (e.pageY - originalMouseY)
+        });
+        break;
+      case 'bottom-right':
+        this.setState({
+          width: originalWidth + (e.pageX - originalMouseX),
+          height: e.pageY - bounding.top
+        });
+        break;
+      case 'left':
+        this.setState({
+          width: originalWidth - (e.pageX - originalMouseX),
+          left: bounding.left + (e.pageX - bounding.left)
+        });
+        break;
+      default:
+        break;
     }
   };
 
@@ -163,7 +165,10 @@ class Resizable extends Component<Props, State> {
     // getBoundingClientRect using refs
     if (el) {
       console.log(el);
-      this.setState({ bounding: el.getBoundingClientRect(), height: el.parentElement.clientHeight, width: el.parentElement.clientWidth });
+      this.setState({ bounding: el.getBoundingClientRect()});
+      if(!this.props.width && !this.props.height) {
+        this.setState({height: el.parentElement.clientHeight, width: el.parentElement.clientWidth})
+      }
     }
   };
 
@@ -172,8 +177,8 @@ class Resizable extends Component<Props, State> {
       <StyledResizableDiv
         onMouseDown={this.handleMouseDown}
         ref={this.getBoundingClientRect}
-        width={this.state.width ? this.state.width + 'px' : '100%'}
-        height={this.state.height ? this.state.height + 'px' : '100%'}
+        width={this.state.width && this.state.width + 'px'}
+        height={this.state.height && this.state.height + 'px'}
         top={this.state.top + 'px'}
         left={this.state.left + 'px'}
       >
