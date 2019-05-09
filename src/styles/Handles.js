@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const resizer = css`
   background: white;
-  border: 3px solid #4286f4;
+  border: 3px solid transparent;
   position: absolute;
 `;
 

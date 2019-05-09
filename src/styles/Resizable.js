@@ -17,4 +17,5 @@ export const StyledResizableDiv = styled.div`
 
 export const ResizableContent = styled.div`
   word-wrap: break-word;
+  padding: 6px;
 `;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyledResizableDiv } from '../styles/Resizable';
 import ResizingHandles from './ResizingHandles';
 
-export interface Props {
+interface Props {
   width?: number,
   height?: number
 }
@@ -21,33 +21,28 @@ interface Element {
 interface State {
   width: number,
   height: number,
-  resizing: any,
-  bounding: Bounding,
+  resizing: string,
+  bounding: object,
   mouseX: number,
   mouseY: number,
   originalWidth: number,
   originalHeight: number,
-  originalBounding: Bounding,
+  originalBounding: object,
   top: number,
   left: number
 }
 
 class Resizable extends Component<Props, State> {
 
-  public static defaultProps: Partial<Props> = {
-    width: 120,
-    height: 120
-  }
-
   state = {
-    width: this.props.width,
-    height: this.props.height,
-    resizing: null,
+    width: this.props.width || null,
+    height: this.props.height || null,
+    resizing: '',
     bounding: null,
     mouseX: 0,
     mouseY: 0,
-    originalWidth: this.props.width || 120,
-    originalHeight: this.props.height || 120,
+    originalWidth: this.props.width,
+    originalHeight: this.props.height,
     originalBounding: null,
     top: null,
     left: null
@@ -100,7 +95,7 @@ class Resizable extends Component<Props, State> {
         this.setState({ resizing: 'left' });
         break;
       default:
-        this.setState({ resizing: false });
+        this.setState({ resizing: '' });
         break;
     }
 
@@ -171,15 +166,16 @@ class Resizable extends Component<Props, State> {
   };
 
   handleMouseUp = (): void => {
-    this.setState({ resizing: false });
+    this.setState({ resizing: '' });
     window.removeEventListener('mousemove', this.handleMouseMove);
   };
 
-  getBoundingClientRect = (el: Element): void => {
-    // getBoundingClientRect using refs
+  getBoundingClientRect = (el: HTMLElement): void => {
 
+    // getBoundingClientRect using refs
     if (el) {
-      this.setState({ bounding: el.getBoundingClientRect() });
+      console.log(el);
+      this.setState({ bounding: el.getBoundingClientRect(), height: el.parentElement.clientHeight, width: el.parentElement.clientWidth });
     }
   };
 
@@ -188,8 +184,8 @@ class Resizable extends Component<Props, State> {
       <StyledResizableDiv
         onMouseDown={this.handleMouseDown}
         ref={this.getBoundingClientRect}
-        width={this.state.width + 'px'}
-        height={this.state.height + 'px'}
+        width={this.state.width ? this.state.width + 'px' : '100%'}
+        height={this.state.height ? this.state.height + 'px' : '100%'}
         top={this.state.top + 'px'}
         left={this.state.left + 'px'}
       >
