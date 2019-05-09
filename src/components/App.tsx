@@ -3,6 +3,7 @@ import Resizable from './Resizable';
 
 const App = () => {
   return (
+    // Quick test no styled-components
     <div style={{padding: 100, }}>
       <Resizable>
         <p>asdasdaasdasdsd</p>

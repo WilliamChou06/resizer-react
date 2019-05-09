@@ -6,18 +6,6 @@ interface Props {
   width?: number,
   height?: number
 }
-
-interface Bounding {
-  top: number,
-  bottom: number,
-  left: number,
-  right: number
-}
-
-interface Element {
-  getBoundingClientRect(): any
-}
-
 interface State {
   width: number,
   height: number,
