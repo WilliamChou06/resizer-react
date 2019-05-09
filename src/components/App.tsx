@@ -7,7 +7,7 @@ const App = () => {
     <div style={{padding: 100, }}>
       <Resizable>
         <p>asdasdaasdasdsd</p>
-        <div style={{ width: 400, background: 'blue', height: 200 }}></div>
+        {/* <div style={{ width: 400, background: 'blue', height: 200 }}></div> */}
       </Resizable>
     </div>
   );
