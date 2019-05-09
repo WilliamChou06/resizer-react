@@ -6,10 +6,7 @@ export const StyledResizableDiv = styled.div`
   left: ${props => props.left || 0} !important;
   top: ${props => props.top || 0} !important;
   background: white;
-  height: 100px;
   position: absolute;
-  top: 100px;
-  left: 100px;
   user-select: none;
   overflow: hidden;
   -moz-user-select: none;
