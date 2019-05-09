@@ -11,5 +11,4 @@ Wrap components around elements to create a resizable div.
   <p>Hello Hooman</p>
   <p>Lorem Ipsum bacon sandwich</p>
 </Resizable>
-
 ```
