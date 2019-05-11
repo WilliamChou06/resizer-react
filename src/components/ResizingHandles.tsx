@@ -13,14 +13,14 @@ import { ResizableContent } from '../styles/Resizable';
 
 const ResizingHandles = (props) => (
   <>
-    <TopHandle id="top" />
-    <RightHandle id="right" />
-    <BottomHandle id="bottom" />
-    <LeftHandle id="left" />
-    <TopLeftHandle id="top-left" />
-    <TopRightHandle id="top-right" />
-    <BottomLeftHandle id="bottom-left" />
-    <BottomRightHandle id="bottom-right" />
+    <TopHandle className="handle" id="top" />
+    <RightHandle className="handle" id="right" />
+    <BottomHandle className="handle" id="bottom" />
+    <LeftHandle className="handle" id="left" />
+    <TopLeftHandle className="handle" id="top-left" />
+    <TopRightHandle className="handle" id="top-right" />
+    <BottomLeftHandle className="handle" id="bottom-left" />
+    <BottomRightHandle className="handle" id="bottom-right" />
     <ResizableContent>{props.children}</ResizableContent>
   </>
 );

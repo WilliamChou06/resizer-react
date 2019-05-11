@@ -4,7 +4,8 @@ import ResizingHandles from './ResizingHandles';
 
 interface Props {
   width?: number,
-  height?: number
+  height?: number,
+  background?: string
 }
 interface State {
   style: Style
@@ -221,8 +222,9 @@ class Resizable extends Component<Props, State> {
         height={this.state.style.height && this.state.style.height + 'px'}
         top={this.state.style.top + 'px'}
         left={this.state.style.left + 'px'}
+        background={this.props.background}
       >
-        <ResizingHandles>{this.props.children}</ResizingHandles>
+        <ResizingHandles background={this.props.background}>{this.props.children}</ResizingHandles>
       </StyledResizableDiv>
     );
   }

@@ -5,7 +5,7 @@ const App = () => {
   return (
     // Quick test no styled-components
     <div style={{padding: 100, }}>
-      <Resizable>
+      <Resizable background="#333">
         <p>asdasdaasdasdsd</p>
         {/* <div style={{ width: 400, background: 'blue', height: 200 }}></div> */}
       </Resizable>
