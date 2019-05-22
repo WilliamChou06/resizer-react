@@ -43,5 +43,5 @@ export default App
 - Resizable component takes 100% of parent div's height and width if none is provided as props.
 
 ## Links
-- **NPM**: https://www.npmjs.com/package/reactsizer-wc
-- **Working Demo:** https://reactsizer-williamc.herokuapp.com/ 
+- **NPM:** https://www.npmjs.com/package/reactsizer-wc
+- **Live Demo:** https://reactsizer-williamc.netlify.com/
