@@ -75,3 +75,9 @@ export const BottomRightHandle = styled.div`
   bottom: 0;
   cursor: nwse-resize;
 `;
+
+
+export const ResizableContent = styled.div`
+  word-wrap: break-word;
+  padding: 6px;
+`;

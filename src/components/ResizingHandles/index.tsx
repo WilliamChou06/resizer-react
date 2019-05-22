@@ -7,9 +7,9 @@ import {
   BottomRightHandle,
   BottomHandle,
   BottomLeftHandle,
-  LeftHandle
-} from '../styles/Handles';
-import { ResizableContent } from '../styles/Resizable';
+  LeftHandle,
+  ResizableContent
+} from './style';
 
 const ResizingHandles = (props) => (
   <>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyledResizableDiv } from '../styles/Resizable';
-import ResizingHandles from './ResizingHandles';
+import { StyledResizableDiv } from './style';
+import ResizingHandles from '../ResizingHandles';
 
 interface Props {
   width?: number,
